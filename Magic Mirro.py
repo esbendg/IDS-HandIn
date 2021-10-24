@@ -4,24 +4,17 @@ import requests
 
 pygame.init()
 
-cph_coordinates = (55.676311,12.569350) # lat, lon
+#url = "https://www.metaweather.com/api/location/search/?lattlong="+cph_coordinates_formatted
+url_woe = "https://www.metaweather.com/api/location/554890/" #copenhagen is 554890
+api_link = requests.get(url_woe)
+api_data = api_link.json()
 
-# defining a params dict for the parameters to be sent to the API 
-cph_coordinates = (55.676311,12.569350) # lat, lon
-
-# format as comma separated lattitude and longitude
-cph_coordinates_formatted = str(cph_coordinates).strip('(').strip(')')
-payload = {'lattlong': cph_coordinates_formatted,}
-  
-# sending get request and saving the response as response object 
-url = "https://www.metaweather.com/api/location/search/"
-r = requests.get(url = "https://www.metaweather.com/api/location/search/", params = payload) 
-  
-# extracting data in json format 
-response = r.json() 
-response
-
-
+print (api_data)
+weather_description = api_data['consolidated_weather'][0]['weather_state_name']
+temperatur = api_data['consolidated_weather'][0]['the_temp']
+print (weather_description)
+print ('det er', temperatur, 'grader C', sep=" ")
+'''    
 x = 50
 y = 50
 I = 400
@@ -53,3 +46,4 @@ while run:
     pygame.display.update ()
 
 pygame.quit
+'''
