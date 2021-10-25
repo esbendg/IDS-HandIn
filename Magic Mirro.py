@@ -1,19 +1,28 @@
-import pygame
+#import pygame
 import json
 import requests
+from datetime import datetime
 
-pygame.init()
+#pygame.init()
 
 #url = "https://www.metaweather.com/api/location/search/?lattlong="+cph_coordinates_formatted
 url_woe = "https://www.metaweather.com/api/location/554890/" #copenhagen is 554890
-api_link = requests.get(url_woe)
-api_data = api_link.json()
+api_link = requests.get(url_woe) #Request data from the url with woeid
+api_data = api_link.json() #convert the data to json
 
-print (api_data)
-weather_description = api_data['consolidated_weather'][0]['weather_state_name']
+#get the specific data from api_data
+weather_description = api_data['consolidated_weather'][0]['weather_state_name'] 
 temperatur = api_data['consolidated_weather'][0]['the_temp']
+vind_hastighed = api_data['consolidated_weather'][0]['wind_speed']
+kilder = api_data['sources'][1]['title']
+date_time = datetime.now()
+
+print (date_time.strftime("%d/%m/%Y | %H:%M:%S"))
 print (weather_description)
-print ('det er', temperatur, 'grader C', sep=" ")
+print ('Vindhastighed:',float('{:.1f}'.format(vind_hastighed*1609.344/3600)), 'm/s')
+print ('Det er', float('{:.1f}'.format(temperatur)), 'grader C udenfor', sep=" ")
+print ('Kilde:', kilder)
+
 '''    
 x = 50
 y = 50
