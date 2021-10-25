@@ -1,26 +1,12 @@
 import pygame
 import json
 import requests
+from datetime import datetime
+import Weather
 
 pygame.init()
 
-cph_coordinates = (55.676311,12.569350) # lat, lon
-
-# defining a params dict for the parameters to be sent to the API 
-cph_coordinates = (55.676311,12.569350) # lat, lon
-
-# format as comma separated lattitude and longitude
-cph_coordinates_formatted = str(cph_coordinates).strip('(').strip(')')
-payload = {'lattlong': cph_coordinates_formatted,}
-  
-# sending get request and saving the response as response object 
-url = "https://www.metaweather.com/api/location/search/"
-r = requests.get(url = "https://www.metaweather.com/api/location/search/", params = payload) 
-  
-# extracting data in json format 
-response = r.json() 
-response
-
+print (Weather.vind_hast())
 
 x = 50
 y = 50
