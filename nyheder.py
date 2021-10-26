@@ -19,7 +19,7 @@ display_surface = pygame.display.set_mode((700,600))
 pygame.display.set_caption ("news")
 font = pygame.font.Font (None,32)
 
-def NewsFromBBC():
+def NewsFromBBC(x):
     query_params = {
         "source": "bbc-news",
         "sortBy": "top",
@@ -29,7 +29,7 @@ def NewsFromBBC():
 
     res = requests.get(main_url, params=query_params)
     open_bbc_page = res.json()
-
+    print (open_bbc_page)
     article = open_bbc_page["articles"]
 
     results = []
@@ -37,17 +37,20 @@ def NewsFromBBC():
     for ar in article:
         results.append(ar["title"])
 
-    for i in range(len(results)):
-        print(i + 1, results[i])
+    #for i in range(len(results)):
+        # i + 1, results[i]
+    return results[x]
     
 if __name__ == '__main__':
-    NewsFromBBC()
+    NewsFromBBC(0)
+
+news=font.render(NewsFromBBC(0),False,(0,0,0))
 
 while run:
     pygame.time.delay(100)
     display_surface.fill(white)
 
-    news=font.render(NewsFromBBC(),False,(0,0,0))
+    
     display_surface.blit(news,(x,y))
 
     for event in pygame.event.get () :
