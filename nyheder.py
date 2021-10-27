@@ -3,8 +3,8 @@ import pygame
 
 pygame.init()
 
-x = 50
-y = 50
+x = 250
+y = 950
 I = 400
 J = 400
 width = 40
@@ -15,7 +15,7 @@ green = (0, 255, 0)
 blue = (0, 0, 128)
 run = True
 
-display_surface = pygame.display.set_mode((700,600))
+display_surface = pygame.display.set_mode((1000,1000))
 pygame.display.set_caption ("news")
 font = pygame.font.Font (None,32)
 
