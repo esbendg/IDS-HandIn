@@ -19,17 +19,18 @@ white = (255, 255, 255)
 green = (0, 255, 0)
 blue = (0, 0, 128)
 run = True
+
 #create screen
 display_surface = pygame.display.set_mode((700,600))
 pygame.display.set_caption ("fun Mirror")
 font = pygame.font.Font (None,32)
-text = font.render ('what', True, blue, green)
-textRect = text.get_rect()
-textRect.center = (I // 2, J // 2)
+
+vejr=font.render(Weather.vind_hast(),False,(0,0,0))
+
 while run:
     pygame.time.delay (100)
     display_surface.fill(white)
-    display_surface.blit(text,textRect)
+    display_surface.blit(vejr, (0,0,0))
 
     for event in pygame.event.get () :
         if event.type == pygame.QUIT :
