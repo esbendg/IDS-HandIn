@@ -1,5 +1,6 @@
 import requests
 import pygame
+from newsapi import NewsApiClient
 
 pygame.init()
 
@@ -38,7 +39,7 @@ def NewsFromBBC(x):
         results.append(ar["title"])
 
     #for i in range(len(results)):
-        # i + 1, results[i]
+    #    i + 1, results[i]
     return results[x]
     
 if __name__ == '__main__':
@@ -49,8 +50,6 @@ news=font.render(NewsFromBBC(0),False,(0,0,0))
 while run:
     pygame.time.delay(100)
     display_surface.fill(white)
-
-    
     display_surface.blit(news,(x,y))
 
     for event in pygame.event.get () :
