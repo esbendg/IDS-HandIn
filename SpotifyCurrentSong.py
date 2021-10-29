@@ -10,7 +10,7 @@ pygame.display.set_caption ("news")
 font = pygame.font.SysFont ('Helvetica',32)
 
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
-SPOTIFY_ACCESS_TOKEN = 'BQAlqKqOsq_G9mrWqMX8UooGuZtsX-VeIl5rVBK05ES3sTyg7LRLZH7cAlgWg81R-fGN92ZKixIakokUMEqj0-jNYOU8-bJxGPCqiqcKMrCvnBWBKSzCyyHZabxsAdmWCpe8KR7W7HVvCzzXg2c'
+SPOTIFY_ACCESS_TOKEN = 'BQBPn5nbOK7Mi3hYyC3CaJwyyExKhE_QpYAJLLoDfwmipQXTOn1lP6DzWmaSTupfZpDbQwovQbOvbtHLBONAz0xTC3bWn89L-Fn-ozCr_RDz-P-oSyKSKT4cwW8eG5vJDxh5pg6mCOxNCTHiJaU'
 
 
 def get_current_track(access_token):
