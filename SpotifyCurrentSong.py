@@ -5,8 +5,12 @@ from pprint import pprint
 
 pygame.init()
 
+display_surface = pygame.display.set_mode((1000,500))
+pygame.display.set_caption ("news")
+font = pygame.font.SysFont ('Helvetica',32)
+
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
-SPOTIFY_ACCESS_TOKEN = 'BQAF_IlsDexOUueLNJzIhAVmF8VBtXx-0EAL9V5iCVcoFNTq-78s2NMxmBrKT5G8ckZZ6ZBm0l_tuNOULeX3Oz_ErfQaKYPhMP6eIruOJa3Yz92b1tjXn3cjHnbIb961huerCmfSnWhzmlTRaUM'
+SPOTIFY_ACCESS_TOKEN = 'BQAlqKqOsq_G9mrWqMX8UooGuZtsX-VeIl5rVBK05ES3sTyg7LRLZH7cAlgWg81R-fGN92ZKixIakokUMEqj0-jNYOU8-bJxGPCqiqcKMrCvnBWBKSzCyyHZabxsAdmWCpe8KR7W7HVvCzzXg2c'
 
 
 def get_current_track(access_token):
@@ -32,24 +36,27 @@ def get_current_track(access_token):
     	"artists": artist_names,
     	"link": link
     }
+    stringsong = current_track_info["track_name"] + " - " + current_track_info["artists"]
 
-    return current_track_info
+    return stringsong
 
-def music():
-	current_track_id = None
-	while True:
-	    current_track_info = get_current_track(SPOTIFY_ACCESS_TOKEN)
-
-	    if current_track_info['id'] != current_track_id:
-		    pprint(
-		    	current_track_info,
-		    	indent=4,
-		    )
-		    current_track_id = current_track_info['id']
-    
-	    time.sleep(1)
-    
+#def music():
+	#current_track_id = None
+	#current_track_info = get_current_track(SPOTIFY_ACCESS_TOKEN)
+	#current_track_id = current_track_info['id']
+    #return current_track_info["id"]
 
 if __name__ == '__main__':
-    music()
+    run = True
+    while(run):
+        musik = font.render(get_current_track(SPOTIFY_ACCESS_TOKEN),False,(0,0,0))
+        display_surface.fill((255,255,255))
+        display_surface.blit(musik,(5,50))
+        pygame.display.flip()
+        pygame.time.delay(1000)
+        
+        for event in pygame.event.get () :
+            if event.type == pygame.QUIT :
+                 run = False
 
+pygame.quit

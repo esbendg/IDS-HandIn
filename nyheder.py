@@ -5,7 +5,7 @@ from newsapi import NewsApiClient
 pygame.init()
 
 x = 250
-y = 950
+y = 100
 I = 400
 J = 400
 width = 40
@@ -16,9 +16,9 @@ green = (0, 255, 0)
 blue = (0, 0, 128)
 run = True
 
-display_surface = pygame.display.set_mode((1000,1000))
+display_surface = pygame.display.set_mode((1000,800))
 pygame.display.set_caption ("news")
-font = pygame.font.Font (None,32)
+font = pygame.font.SysFont ('Helvetica',32)
 
 def NewsFromBBC(x):
     query_params = {
@@ -49,8 +49,10 @@ news=font.render(NewsFromBBC(0),False,(0,0,0))
 
 while run:
     pygame.time.delay(100)
+    bbc = font.render("BBC News:", False, (0,0,0))
     display_surface.fill(white)
-    display_surface.blit(news,(x,y))
+    display_surface.blit(bbc,(100,y*7.5))
+    display_surface.blit(news,(x,y*7.5))
 
     for event in pygame.event.get () :
         if event.type == pygame.QUIT :
