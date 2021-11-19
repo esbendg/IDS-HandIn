@@ -5,8 +5,6 @@ from datetime import datetime
 import Weather
 
 pygame.init()
-if __name__ == '__main__':
-    print (Weather.vejret())
 
 x = 50
 y = 50
