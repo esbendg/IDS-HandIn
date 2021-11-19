@@ -20,7 +20,7 @@ run = True
 
 display_surface = pygame.display.set_mode((1000,1000))
 pygame.display.set_caption ("SmartMirror")
-font = pygame.font.SysFont ('consolas',32, True)
+font = pygame.font.SysFont ('Helvetica',32, True)
 
 news=font.render(NewsFromBBC(0),False,(white))
 

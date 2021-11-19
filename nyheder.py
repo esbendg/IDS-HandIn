@@ -5,7 +5,7 @@ from newsapi import NewsApiClient
 pygame.init()
 
 x = 250
-y = 950
+y = 100
 I = 400
 J = 400
 width = 40
@@ -16,11 +16,11 @@ green = (0, 255, 0)
 blue = (0, 0, 128)
 run = True
 
-display_surface = pygame.display.set_mode((1000,1000))
+display_surface = pygame.display.set_mode((1000,800))
 pygame.display.set_caption ("news")
-font = pygame.font.Font (None,32)
+font = pygame.font.SysFont ('Helvetica',32)
 
-def NewsFromBBC(x):
+def NewsFromBBC():
     query_params = {
         "source": "bbc-news",
         "sortBy": "top",
@@ -40,17 +40,28 @@ def NewsFromBBC(x):
 
     #for i in range(len(results)):
     #    i + 1, results[i]
-    return results[x]
+    return results
     
 if __name__ == '__main__':
-    NewsFromBBC(0)
+    NEWS_DATA = NewsFromBBC()
 
-news=font.render(NewsFromBBC(0),False,(0,0,0))
+news=font.render(NEWS_DATA[0],False,(0,0,0))
+tick = 6000
+news_nr = 0
 
 while run:
-    pygame.time.delay(100)
+    bbc = font.render("BBC News:", False, (0,0,0))
     display_surface.fill(white)
-    display_surface.blit(news,(x,y))
+    display_surface.blit(bbc,(100,y*7.5))
+    display_surface.blit(news,(x,y*7.5))
+    if (pygame.time.get_ticks() > tick):
+        tick = tick + 6000
+        news_nr = news_nr + 1
+        news=font.render(NEWS_DATA[news_nr],False,(0,0,0))
+        if(news_nr == 9):
+            news_nr = 0
+    if(pygame.time.get_ticks() > 1800000):
+        NEWS_DATA = NewsFromBBC()
 
     for event in pygame.event.get () :
         if event.type == pygame.QUIT :
