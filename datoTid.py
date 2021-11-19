@@ -23,7 +23,7 @@ font = pygame.font.Font (None,32)
 
 def getTime():
     now = datetime.now()
-    current_time = now.strftime("%H,%M,%S")
+    current_time = now.strftime("%H:%M:%S")
     return current_time
 #print (getTime())
 

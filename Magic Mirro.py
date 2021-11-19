@@ -6,7 +6,6 @@ import Weather
 
 pygame.init()
 
-print (Weather.vind_hast())
 
 x = 50
 y = 50
