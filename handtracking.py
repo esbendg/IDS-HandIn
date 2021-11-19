@@ -27,7 +27,9 @@ with mp_hands.Hands(
     image.flags.writeable = True
     image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     if results.multi_hand_landmarks:
+      print(results.multi_hand_landmarks[0].landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x)
       for hand_landmarks in results.multi_hand_landmarks:
+        # print(hand_landmarks.landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP].x)
         mp_drawing.draw_landmarks(
             image,
             hand_landmarks,
