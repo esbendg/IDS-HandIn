@@ -2,7 +2,7 @@ import pygame
 import requests
 import json
 from datetime import datetime
-
+"""
 pygame.init()
 
 x = 50
@@ -21,18 +21,20 @@ display_surface = pygame.display.set_mode((700,600))
 pygame.display.set_caption ("fun Mirror")
 font = pygame.font.Font (None,32)
 
+"""
+
 def getTime():
     now = datetime.now()
-    current_time = now.strftime("%H,%M,%S")
+    current_time = now.strftime("%H:%M:%S")
     return current_time
 #print (getTime())
 
 def getDate():
     now = datetime.now()
-    current_time = now.strftime("%D")
+    current_time = now.strftime("%d-%m-%Y")
     return current_time
 
-
+"""
 while run:
     pygame.time.delay (100)
     display_surface.fill(white)
@@ -50,3 +52,4 @@ while run:
     
 
 pygame.quit
+"""
