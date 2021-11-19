@@ -22,7 +22,7 @@ run = True
 
 #create screen
 display_surface = pygame.display.set_mode((700,600))
-pygame.display.set_caption ("fun Mirror")
+pygame.display.set_caption ("fuck Mirror")
 font = pygame.font.Font (None,32)
 
 vejr=font.render(Weather.vejret(),False,(0,0,0))

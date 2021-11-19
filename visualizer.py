@@ -1,4 +1,4 @@
-import pygame
+"""import pygame
 from datoTid import getDate, getTime
 from nyheder import NewsFromBBC
 
@@ -48,4 +48,4 @@ while run:
     pygame.display.update ()
     
 
-pygame.quit
+pygame.quit"""

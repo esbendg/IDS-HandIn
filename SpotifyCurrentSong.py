@@ -6,11 +6,11 @@ from pprint import pprint
 pygame.init()
 
 display_surface = pygame.display.set_mode((1000,500))
-pygame.display.set_caption ("news")
+pygame.display.set_caption ("spotify")
 font = pygame.font.SysFont ('Helvetica',32)
 
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
-SPOTIFY_ACCESS_TOKEN = 'BQBPn5nbOK7Mi3hYyC3CaJwyyExKhE_QpYAJLLoDfwmipQXTOn1lP6DzWmaSTupfZpDbQwovQbOvbtHLBONAz0xTC3bWn89L-Fn-ozCr_RDz-P-oSyKSKT4cwW8eG5vJDxh5pg6mCOxNCTHiJaU'
+SPOTIFY_ACCESS_TOKEN = 'BQAvftz39R-pBKRXYbF_3nnOVVDy0K_Rhc87O6Xddjs8Nz3KHUCTjJgwCr3a4DClTnG4bSqUBL5k8Jw-3ePAAgj2b3ZipK8DkLnvvDWA181-asJ4xyNqzIwV2PiabWnJSWdAn6cEA3UKBLqTTdM'
 
 
 def get_current_track(access_token):
