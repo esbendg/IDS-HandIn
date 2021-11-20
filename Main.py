@@ -72,15 +72,19 @@ tdt()
 tidnews()
 
 screen = tk.Label(window)
-screen.pack(anchor=NW, fill=X, padx=45)
+screen.pack(anchor=W, fill=X, padx=45)
 screen.configure(background='black')
 
 infolbl = tk.Label(window,textvariable=time_string_label, fg="white", bg="black", font=("Helvetica",40))
 infolbl.pack(in_=screen, side=LEFT)
-infolbl.place(relx=0.5, rely=0.5, anchor='nw')
+#infolbl.place(relx=0.5, rely=0.5, anchor='nw')
 
-spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20))
-spotifylbl.pack()
+spot = tk.Label(window)
+spot.pack(anchor=W, fill=X, padx=45)
+spot.configure(background='black')
+spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20), anchor='w')
+spotifylbl.pack(in_=spot, side=LEFT)
+spotifylbl.place(x=45,y=540)
 
 newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",30))
 newslbl.pack(side=BOTTOM, anchor=W, fill=X)
