@@ -3,14 +3,14 @@ import time
 import pygame
 from pprint import pprint
 
-pygame.init()
+"""pygame.init()
 
 display_surface = pygame.display.set_mode((1000,500))
-pygame.display.set_caption ("news")
-font = pygame.font.SysFont ('Helvetica',32)
+pygame.display.set_caption ("spotify")
+font = pygame.font.SysFont ('Helvetica',32)"""
 
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
-SPOTIFY_ACCESS_TOKEN = 'BQBPn5nbOK7Mi3hYyC3CaJwyyExKhE_QpYAJLLoDfwmipQXTOn1lP6DzWmaSTupfZpDbQwovQbOvbtHLBONAz0xTC3bWn89L-Fn-ozCr_RDz-P-oSyKSKT4cwW8eG5vJDxh5pg6mCOxNCTHiJaU'
+SPOTIFY_ACCESS_TOKEN = 'BQCKXn1j1G9NkIaw3-0VPTKuD1xswTcH3TUDNUH_uQuAyv3zq4pNo-QRnXpl1fyt2IrKHKSXeaVauJBzsG4SWENhEo_a1mo87n34M0utgeVRTj6H7f3DiLaAYFqJ0Xui7B8RJfmulgQhnOjoq4g'
 
 
 def get_current_track(access_token):
@@ -45,7 +45,7 @@ def get_current_track(access_token):
 	#current_track_info = get_current_track(SPOTIFY_ACCESS_TOKEN)
 	#current_track_id = current_track_info['id']
     #return current_track_info["id"]
-
+"""
 if __name__ == '__main__':
     run = True
     while(run):
@@ -59,4 +59,4 @@ if __name__ == '__main__':
             if event.type == pygame.QUIT :
                  run = False
 
-pygame.quit
+pygame.quit"""

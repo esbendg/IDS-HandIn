@@ -1,5 +1,4 @@
 import json
-from os import sep
 import requests
 from datetime import datetime
 
