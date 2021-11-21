@@ -12,6 +12,7 @@ print (f"mood dict opened as \n {mood_dict}")
 def add_data (time_stamp, data):
     new_info = {time_stamp: data}
     mood_dict.update(new_info)
+    print (f"mood dict saved as \n {mood_dict}")
 
 #this dumps and closes the pkl file. Call this at the end of the program
 def close_pkl ():

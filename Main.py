@@ -6,6 +6,7 @@ import sys
 from datoTid import getDate, getTime
 from SpotifyCurrentSong import get_current_track, SPOTIFY_ACCESS_TOKEN
 from nyheder import NewsFromBBC
+from MoodData import *
 
 
 window = tk.Tk()
@@ -66,6 +67,29 @@ def tidnews():
         story_count = 0
     window.after(6000,tidnews)
 
+
+#button to be put in the right spot
+"""
+made three functions that save the right mood
+"""
+def save_happy ():
+    dato = getDate ()
+    add_data (dato, "happy")
+    
+def save_neutral ():
+    dato = getDate ()
+    add_data (dato, "neutral")
+
+def save_sad ():
+    dato = getDate ()
+    add_data (dato, "sad")
+#put the functions above into buttons.
+happy_button = Button(window, text="Happy", command=save_happy)
+happy_button.pack()
+neutral_button = Button(window, text="Neutral", command=save_neutral)
+neutral_button.pack()
+sad_button = Button(window, text="Sad", command=save_sad)
+sad_button.pack()
 
 
 tdt()
