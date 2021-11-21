@@ -2,6 +2,8 @@ import json
 from os import sep
 import requests
 from datetime import datetime
+
+
 def vejret ():
     url_woe = "https://www.metaweather.com/api/location/554890/" #woeid for copenhagen is 554890
     api_link = requests.get(url_woe) #Request data from the url with woeid
@@ -24,4 +26,5 @@ def vejret ():
     CPH_Weather = f'{Info_LIST["weather_state_name"]}. \nTemperature: {Info_LIST["the_temp"]:.1f}\N{DEGREE SIGN}C. \nWindspeed {Info_LIST["wind_speed"]:.1f} m/s.\n{Info_LIST["title"]}'
     return CPH_Weather
     
+
 
