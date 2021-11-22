@@ -8,13 +8,13 @@ class Hand_Track:
   
   def __init__(self):
       self.cap = cv2.VideoCapture(0)
-      self.hands = mp_hands.Hands(
-                  model_complexity=0,
-                  min_detection_confidence=0.5,
-                  min_tracking_confidence=0.5)
       self.hand_on_img = False
 
   def get_points(self):
+    with mp_hands.Hands(
+    model_complexity=0,
+    min_detection_confidence=0.5,
+    min_tracking_confidence=0.5) as hands:
       if self.cap.isOpened():
         success, self.image = self.cap.read() # getting the image, opening camera
         if not success:
@@ -22,7 +22,7 @@ class Hand_Track:
 
         self.image.flags.writeable = False
         self.image = cv2.cvtColor(self.image, cv2.COLOR_BGR2RGB)
-        self.results = self.hands.process(self.image) #processing image
+        self.results = hands.process(self.image) #processing image
         if self.results.multi_hand_landmarks:
           self.hand_on_img = True
           self.index_tip = self.results.multi_hand_landmarks[0].landmark[mp_hands.HandLandmark.INDEX_FINGER_TIP]
