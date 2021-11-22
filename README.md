@@ -1,3 +1,23 @@
-# IDS-HandIn
-# here we can post the API's we want to use and are using
-# https://docs.google.com/document/d/1YNYv2yD-m5GGGZMk7lCG6r061QmfE_BP5ggsauHhyZk/edit?usp=sharing
+# IDS-HandIn 28/11/2021
+
+This is a magic mirror interface, with different visual and interactive possibilities.
+
+List of requirements to run this program:
+Pickle file named mood.pkl on path
+
+tkinter
+tkcalendar
+newsapi-python
+mediapipe
+opencv-python
+pickle
+json
+requests
+datetime
+spotipy
+spotipy.client
+spotipy.oauth2
+pprint
+sys
+abc
+

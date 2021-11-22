@@ -1,16 +1,29 @@
 import json
-from os import sep
 import requests
 from datetime import datetime
+
+
 def vejret ():
-    url_woe = "https://www.metaweather.com/api/location/554890/" #copenhagen is 554890
+    url_woe = "https://www.metaweather.com/api/location/554890/" #woeid for copenhagen is 554890
     api_link = requests.get(url_woe) #Request data from the url with woeid
     api_data = api_link.json() #convert the data to json
 
 #get the specific data from api_data
-    vejrtilstand = 'Vejret i dag i KBH:', api_data['consolidated_weather'][0]['weather_state_name'] #set variable to get correct info, and write "today, the weather in CPH is"
-    temperatur = 'Temperatur:', float('{:.1f}'.format(api_data['consolidated_weather'][0]['the_temp'])), 'grader celcius' #set variable to get correct info, and write in celcius
-    vindhastighed = 'Vindhastighed:', float('{:.1f}'.format(api_data['consolidated_weather'][0]['wind_speed']*1609.344/3600)) #set variable to get correct info, and write wind speed, and changing from mph to mps
-    kilde = 'kilde', api_data['sources'][1]['title'] #set variable to get correct info, and write "source"
-    list = [vejrtilstand, temperatur, vindhastighed, kilde] #set variables as a list.
-    return ''.join(str(list)) #return the variables as a list.
+
+    vejrtilstand = api_data['consolidated_weather'][0]['weather_state_name']
+    temperatur = api_data['consolidated_weather'][0]['the_temp']
+    vindhastighed = api_data['consolidated_weather'][0]['wind_speed']*1609.344/3600
+    kilde = api_data['sources'][1]['title']
+
+    Info_LIST = {
+        "weather_state_name" : vejrtilstand,
+        "the_temp" : temperatur,
+        "wind_speed" : vindhastighed,
+        "title" : kilde
+    }
+
+    CPH_Weather = f'{Info_LIST["weather_state_name"]}. \nTemperature: {Info_LIST["the_temp"]:.1f}\N{DEGREE SIGN}C. \nWindspeed {Info_LIST["wind_speed"]:.1f} m/s.\n{Info_LIST["title"]}'
+    return CPH_Weather
+    
+
+

@@ -5,8 +5,6 @@ from datetime import datetime
 import Weather
 
 pygame.init()
-if __name__ == '__main__':
-    print (Weather.vejret())
 
 x = 50
 y = 50
@@ -22,7 +20,7 @@ run = True
 
 #create screen
 display_surface = pygame.display.set_mode((700,600))
-pygame.display.set_caption ("fun Mirror")
+pygame.display.set_caption ("fuck Mirror")
 font = pygame.font.Font (None,32)
 
 vejr=font.render(Weather.vejret(),False,(0,0,0))
