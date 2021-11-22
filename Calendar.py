@@ -29,7 +29,6 @@ text = font.render(calendar.month(2021,10, 5,10), False, green, blue)
 
 pygame.display.set_caption('Calendar')
 
-
 while run:
     pygame.time.delay (100)
     display_surface.fill(white)
