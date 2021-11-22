@@ -4,6 +4,7 @@ This is a magic mirror interface, with different visual and interactive possibil
 
 List of requirements to run this program:
 Pickle file named mood.pkl on path
+ - to create this. Use the function "create_pkl_file()"
 
 tkinter
 tkcalendar
