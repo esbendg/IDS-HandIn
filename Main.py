@@ -3,6 +3,7 @@
 import tkinter as tk
 from tkinter import *
 import sys
+from typing import Literal
 from datoTid import getDate, getTime
 from SpotifyCurrentSong import get_current_track, SPOTIFY_ACCESS_TOKEN
 from nyheder import NewsFromBBC
@@ -75,22 +76,25 @@ made three functions that save the right mood
 def save_happy ():
     dato = getDate () +" : "+ getTime()
     add_data (dato, "happy")
+    close_pkl()
     
 def save_neutral ():
     dato = getDate () +" : " + getTime ()
     add_data (dato, "neutral")
+    close_pkl()
 
 def save_sad ():
     dato = getDate () + " : "+ getTime()
     add_data (dato, "sad")
+    close_pkl()
 #put the functions above into buttons.
-happy_button = Button(window, text="Happy", command=save_happy)
+buttons = happy_button = Button(window, text="Happy", command=save_happy)
 happy_button.pack()
+happy_button.place(anchor="e")
 neutral_button = Button(window, text="Neutral", command=save_neutral)
 neutral_button.pack()
 sad_button = Button(window, text="Sad", command=save_sad)
 sad_button.pack()
-
 
 tdt()
 tidnews()
