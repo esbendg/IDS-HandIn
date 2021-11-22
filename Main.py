@@ -73,15 +73,15 @@ def tidnews():
 made three functions that save the right mood
 """
 def save_happy ():
-    dato = getDate ()
+    dato = getDate () +" : "+ getTime()
     add_data (dato, "happy")
     
 def save_neutral ():
-    dato = getDate ()
+    dato = getDate () +" : " + getTime ()
     add_data (dato, "neutral")
 
 def save_sad ():
-    dato = getDate ()
+    dato = getDate () + " : "+ getTime()
     add_data (dato, "sad")
 #put the functions above into buttons.
 happy_button = Button(window, text="Happy", command=save_happy)

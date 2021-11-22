@@ -1,7 +1,5 @@
 import json
 import requests
-from datetime import datetime
-
 
 def vejret ():
     url_woe = "https://www.metaweather.com/api/location/554890/" #woeid for copenhagen is 554890
