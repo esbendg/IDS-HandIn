@@ -1,25 +1,7 @@
 import requests
-import pygame
+
 from newsapi import NewsApiClient
 
-"""
-pygame.init()
-
-x = 250
-y = 100
-I = 400
-J = 400
-width = 40
-height = 60
-vel = 5
-white = (255, 255, 255)
-green = (0, 255, 0)
-blue = (0, 0, 128)
-run = True
-
-display_surface = pygame.display.set_mode((1000,800))
-pygame.display.set_caption ("news")
-font = pygame.font.SysFont ('Helvetica',32)"""
 
 def NewsFromBBC():
     query_params = {
