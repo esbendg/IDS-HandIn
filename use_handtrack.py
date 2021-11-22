@@ -44,7 +44,6 @@ def update(dt):
   if obj.is_hand_visible():
       x = points["index"].x
       y = points["index"].y
-      print("hand")
     # time.sleep(0.1)
   
   # Go through events that are passed to the script by the window.
@@ -92,8 +91,7 @@ def runPyGame():
   while True: # Loop forever!
     update(dt) # You can update/draw here, I've just moved the code for neatness.
     draw(screen)
-    
-    print(x, y)
+
     dt = fpsClock.tick(fps)
 
 runPyGame()
