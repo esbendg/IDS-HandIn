@@ -1,11 +1,14 @@
 import requests
 import time
-import pygame
 from pprint import pprint
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3cd0322d7160c5e0094ae8241f0206a95c4a8335
 
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
-SPOTIFY_ACCESS_TOKEN = 'BQCKXn1j1G9NkIaw3-0VPTKuD1xswTcH3TUDNUH_uQuAyv3zq4pNo-QRnXpl1fyt2IrKHKSXeaVauJBzsG4SWENhEo_a1mo87n34M0utgeVRTj6H7f3DiLaAYFqJ0Xui7B8RJfmulgQhnOjoq4g'
+SPOTIFY_ACCESS_TOKEN = 'BQA_Fj1ACxbfhkWGfwZgfcrze-0rT1JBoc-f7IgfTsjk_QslB5yrNG5aSSJpk9l_56OpLifo4LcAs2El2Fa1PHQlHP6qm2GQSKdU79qpZ5YqXrUpcQe-FnbFV61Mhnn948L_TTqJVzOUGrTqhNZRXJg'
 
 
 def get_current_track(access_token):

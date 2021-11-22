@@ -1,7 +1,14 @@
 import requests
+<<<<<<< HEAD
 import pygame
 from newsapi import NewsApiClient
 
+=======
+
+from newsapi import NewsApiClient
+
+
+>>>>>>> 3cd0322d7160c5e0094ae8241f0206a95c4a8335
 def NewsFromBBC():
     query_params = {
         "source": "bbc-news",

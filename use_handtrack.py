@@ -7,6 +7,7 @@ while(True):
     points = obj.get_points()
     if obj.is_hand_visible():
         print(points["index"].y)
+        
     else: print("No hand")
     # time.sleep(0.1)
 

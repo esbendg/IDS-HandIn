@@ -7,6 +7,7 @@ from typing import Literal
 from datoTid import getDate, getTime
 from SpotifyCurrentSong import get_current_track, SPOTIFY_ACCESS_TOKEN
 from nyheder import NewsFromBBC
+from newsapi import NewsApiClient
 from MoodData import *
 
 
@@ -44,7 +45,7 @@ def tdt():
     
     total_tick = total_tick + 10
 
-    tick6=tick6+10
+    tick6=tick6+1
     if (tick6 >= 1000):
         spotify_string_label.set(get_current_track(SPOTIFY_ACCESS_TOKEN))
         tick6=0
