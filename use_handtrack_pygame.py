@@ -1,18 +1,6 @@
 import hand_track_class
 import time
 
-# obj = hand_track_class.Hand_Track()
-
-# while(True):
-#     points = obj.get_points()
-#     if obj.is_hand_visible():
-#         print(points["index"].y)
-#     else: print("No hand")
-#     # time.sleep(0.1)
-
-# obj.finish()
-
-
 import pygame
 
 # PyGame template.
@@ -24,7 +12,8 @@ import sys
 import pygame
 from pygame.locals import *
 
-obj = hand_track_class.Hand_Track()
+obj = hand_track_class.Hand_track()
+obj.start()
 x = 0
 y = 0
  
@@ -33,17 +22,11 @@ def update(dt):
   """
   Update game. Called once per frame.
   dt is the amount of time passed since last frame.
-  If you want to have constant apparent movement no matter your framerate,
-  what you can do is something like
-  
-  x += v * dt
-  
-  and this will scale your velocity based on time. Extend as necessary."""
+  """
 
-  points = obj.get_points()
-  if obj.is_hand_visible():
-      x = points["index"].x
-      y = points["index"].y
+  if obj.hand_on_img:
+      x = obj.index_tip.x
+      y = obj.index_tip.y  
     # time.sleep(0.1)
   
   # Go through events that are passed to the script by the window.
@@ -63,7 +46,10 @@ def draw(screen):
   Draw things to the window. Called once per frame.
   """
   screen.fill((0, 0, 0)) # Fill the screen with black.
-  pygame.draw.circle(screen,(200,200,200),(640-x*640, y*480), 20)
+  color = (200, 200, 200)
+  if obj.is_click:
+    color = (180, 255, 180)
+  pygame.draw.circle(screen,color,(640-x*640, y*480), 20)
   
   # Redraw screen here.
   
