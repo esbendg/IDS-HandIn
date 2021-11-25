@@ -6,8 +6,6 @@ import sys
 from typing import Literal
 from datoTid import getDate, getTime
 from SpotifyCurrentSong import get_current_track, SPOTIFY_ACCESS_TOKEN
-
-
 from MoodData import *
 from PIL import Image, ImageTk
 
@@ -21,9 +19,7 @@ track_obj.set_window_size(1000, 1000) #SET WINDOW SIZE
 
 window = tk.Tk()
 window.title('SmortMirror')
-# Define a Canvas widget
 
-# Define a Canvas widget
 canvas = Canvas(window, width=1000, height=1000, bg="white")
 canvas.pack(anchor= CENTER, padx = 10, pady=10)
 canvas.place(x = 0, y =0)
@@ -86,6 +82,11 @@ def save_sad ():
     add_data (dato, "sad")
     close_pkl()
 #put the functions above into buttons.
+
+happyRectangle = canvas.create_rectangle(950,0,900,50, fill='green')
+neutralRectangle = canvas.create_rectangle(950,70,900,120, fill='yellow')
+sadRectangle = canvas.create_rectangle(950,150,900,200, fill='red')
+
 happy_button = Button(window, text="Happy", command=save_happy)
 happy_button.pack(anchor=NE)
 neutral_button = Button(window, text="Neutral", command=save_neutral)
@@ -95,11 +96,8 @@ sad_button.pack(anchor=NE)
 
 tdt()
 
-
-
 infolbl = tk.Label(window,textvariable=time_string_label, fg="white", bg="grey", font=("Helvetica",40))
 infolbl.pack(in_=window, side=BOTTOM)
-
 
 spot = tk.Label(window)
 spot.pack(anchor=S, fill=X, padx=45)
@@ -111,9 +109,7 @@ spotifylbl.pack(in_=window, side=LEFT)
 newslbl.place(x = 0, y = 0)
 newslbl.pack()"""
 
-
 window.wm_attributes('-fullscreen','false')
-
 
 def left(e):
    x = -20
@@ -140,7 +136,6 @@ def move(e):
    image = ImageTk.PhotoImage(Image.open('ball.png'))
    img = canvas.create_image(e.x, e.y, image=image)
 
-
 #Event when pinched
 click_num = 0
 def do_this(event):
@@ -166,7 +161,6 @@ window.bind('<<PINCH>>', do_this)
 
 # Bind the move function
 canvas.bind("<B1-Motion>", move)
-
 
 window.mainloop()
 
