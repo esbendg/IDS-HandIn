@@ -86,22 +86,28 @@ def save_sad ():
     add_data (dato, "sad")
     close_pkl()
 
-mood_event = {save_happy, save_neutral, save_sad}
+def assign_event(mood_event):
+    if mood_event == 0:
+        save_happy()
+    elif mood_event == 1:
+        save_neutral()
+    elif mood_event == 2:
+        save_sad()
 
-class mood_buttons:
+# class mood_buttons:
     #put the functions above into buttons.
-    rectangles = [[950,0,900,50], [950, 70, 900, 120], [950, 150, 900, 200]]
+rectangles = [[600,0,950,50], [600, 70, 950, 120], [600, 150, 950, 200]]
 
-    happyRectangle = canvas.create_rectangle(rectangles[0][0],rectangles[0][1],rectangles[0][2],rectangles[0][3], fill='green')
-    neutralRectangle = canvas.create_rectangle(rectangles[1][0],rectangles[1][1],rectangles[1][2],rectangles[1][3], fill='yellow')
-    sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectangles[2][2],rectangles[2][3], fill='red')
+happyRectangle = canvas.create_rectangle(rectangles[0][0],rectangles[0][1],rectangles[0][2],rectangles[0][3], fill='green')
+neutralRectangle = canvas.create_rectangle(rectangles[1][0],rectangles[1][1],rectangles[1][2],rectangles[1][3], fill='yellow')
+sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectangles[2][2],rectangles[2][3], fill='red')
 
-    happy_button = Button(window, text="Happy", command=save_happy)
-    happy_button.pack(anchor=NE)
-    neutral_button = Button(window, text="Neutral", command=save_neutral)
-    neutral_button.pack(anchor=NE)
-    sad_button = Button(window, text="Sad", command=save_sad)
-    sad_button.pack(anchor=NE)
+    # happy_button = Button(window, text="Happy", command=save_happy)
+    # happy_button.pack(anchor=NE)
+    # neutral_button = Button(window, text="Neutral", command=save_neutral)
+    # neutral_button.pack(anchor=NE)
+    # sad_button = Button(window, text="Sad", command=save_sad)
+    # sad_button.pack(anchor=NE)
 
 tdt() #time function
 
@@ -155,10 +161,10 @@ def pinch_on(event):
 
 def pinch_one(event):
     print("one pinch")
-    for rectangles in mood_buttons.rectangles:
-        for number in rectangles:
-            if (track_obj.is_inside_box([rectangles][number],[rectangles][number],[rectangles][number],[rectangles][number])):
-                    mood_event[rectangles]
+    for i in range(3):
+        if (track_obj.is_inside_box(rectangles[i][0],rectangles[i][1],rectangles[i][2],rectangles[i][3])):
+                assign_event(i)
+                print(i)
 
 def do_secondly(event):
     print("1 sec passed")

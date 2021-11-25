@@ -13,7 +13,7 @@ class Hand_track:
         self.index_tip = None
         self.thumb_tip = None
         self.is_pinch = False
-        self.click_sensitivity = 0.04    #Sensitivity of the check_if_click function. Higher value -> more sensitive -> easier to click
+        self.click_sensitivity = 0.05    #Sensitivity of the check_if_click function. Higher value -> more sensitive -> easier to click
         self.hand_on_img = False
         self.img_state = 0                # 0 is off, 1 is on, 2 is closing window
         self.stop_thread = False
