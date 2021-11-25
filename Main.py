@@ -11,6 +11,14 @@ from SpotifyCurrentSong import get_current_track, SPOTIFY_ACCESS_TOKEN
 from MoodData import *
 from PIL import Image, ImageTk
 
+import hand_track_class
+import threading
+
+track_obj = hand_track_class.Hand_track()
+track_obj.start()
+track_obj.img_on()
+track_obj.set_window_size(200, 300) #SET WINDOW SIZE
+
 window = tk.Tk()
 window.title('SmortMirror')
 # Define a Canvas widget
@@ -131,6 +139,30 @@ def move(e):
    global image
    image = ImageTk.PhotoImage(Image.open('ball.png'))
    img = canvas.create_image(e.x, e.y, image=image)
+
+
+#Event when pinched
+click_num = 0
+def do_this(event):
+    global click_num
+    print(f"Click! {x}")
+    click_num += 1
+    if track_obj.is_inside_box(x0, y0, x1, y1): # SET OBJECT BOUNDARIES
+        # CALL FUNCTION HERE
+        print("INBOX")
+
+def getEvent():
+    while True:
+        if track_obj.is_pinch:
+            try:
+                window.event_generate('<<PINCH>>', when='tail')
+            except TclError:
+                break
+
+Thr=threading.Thread(target=getEvent)
+Thr.start()
+
+window.bind('<<PINCH>>', do_this)
 
 # Bind the move function
 canvas.bind("<B1-Motion>", move)
