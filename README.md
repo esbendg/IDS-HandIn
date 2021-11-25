@@ -1,4 +1,4 @@
-# IDS-HandIn 28/11/2021
+# IDS-HandIn 26/11/2021 - Made by Lukas S. Harder, Esben D. Galsgaard, Karsten Heiseldal, Áron Kuna & Jonatan Meyer
 
 This is a magic mirror interface, with different visual and interactive possibilities.
 
