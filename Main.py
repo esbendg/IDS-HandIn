@@ -79,10 +79,12 @@ happyRectangle = canvas.create_rectangle(rectangles[0][0],rectangles[0][1],recta
 neutralRectangle = canvas.create_rectangle(rectangles[1][0],rectangles[1][1],rectangles[1][2],rectangles[1][3], fill='yellow')
 sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectangles[2][2],rectangles[2][3], fill='red')
 
+rect_list = [happyRectangle, neutralRectangle, sadRectangle]
+
 
 infolbl = Label(canvas, textvariable=time_string_label, fg="white", bg="black", font=("Helvetica",20)) #label for time
 infolbl.pack()
-canvas.create_window(0, 100, window=infolbl, anchor="nw") 
+canvas.create_window(20, 20, window=infolbl, anchor="nw") 
 
 spotifylbl = Label(canvas, textvariable=spotify_string_label, fg="#191414", bg="#1DB954", font=("Helvetica",20))
 spotifylbl.pack()
@@ -92,7 +94,7 @@ news_list = NewsFromBBC()
 
 newslbl = tk.Label(canvas, textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",20))
 newslbl.pack(pady=20)
-canvas.create_window(CANVAS_WIDTH/2, CANVAS_HEIGHT-100, window=newslbl, ) 
+canvas.create_window(CANVAS_WIDTH/2, CANVAS_HEIGHT-100, window=newslbl, anchor="n") 
 news_string_label.set("News are incoming")
 
 def move():
@@ -108,16 +110,21 @@ def pinch_on(event):
     # print("Pinch")
     pass
 
+repaint_boxes = False
 def pinch_one(event):
+    global repaint_boxes
     print("one pinch")
     for i in range(3):
         if (track_obj.is_inside_box(rectangles[i][0],rectangles[i][1],rectangles[i][2],rectangles[i][3])):
                 assign_event(i)
+                canvas.itemconfig(rect_list[i], fill='white')
+                repaint_boxes = True
                 print(i)
 
 count_seconds = 0
 news_i = 0
 def do_secondly(event):
+    global repaint_boxes
     time_string_label.set(getTime() + "  " + getDate())
     spotify_string_label.set(get_current_track(SPOTIFY_ACCESS_TOKEN))
     #Happens every 10 seconds
@@ -127,9 +134,14 @@ def do_secondly(event):
         global news_i
         news_string_label.set(news_list[news_i])
         news_i += 1
-        if news_i > 10:
+        if news_i > 9:
             news_i = 0
         count_seconds = 0
+    if repaint_boxes:
+        canvas.itemconfig(rect_list[0], fill='green')
+        canvas.itemconfig(rect_list[1], fill='yellow')
+        canvas.itemconfig(rect_list[2], fill='red')
+        repaint_boxes = False
 
 def do_millisecondly(event):
     move()
