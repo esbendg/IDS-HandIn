@@ -18,8 +18,11 @@ def get_current_track(access_token):
         }
     )
     json_resp = response.json()
-
-    track_id = json_resp['item']['id']
+    try:
+        track_id = json_resp['item']['id']
+    except KeyError:
+        return "Need a valid Spotify key"
+        
     track_name = json_resp['item']['name']
     artists = [artist for artist in json_resp['item']['artists']]
 
@@ -39,3 +42,4 @@ def get_current_track(access_token):
     return stringsong
 
 
+get_current_track(SPOTIFY_ACCESS_TOKEN)
