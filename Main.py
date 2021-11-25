@@ -16,7 +16,7 @@ from nyheder import NewsFromBBC
 
 #VARIABLES
 CANVAS_WIDTH = 1000
-CANVAS_HEIGHT = 500
+CANVAS_HEIGHT = 1000
 
 track_obj = hand_track_class.Hand_track()
 track_obj.start()
@@ -26,18 +26,17 @@ track_obj.set_window_size(CANVAS_WIDTH, CANVAS_HEIGHT) #SET WINDOW SIZE
 window = tk.Tk() #master tk window
 window.title('SmortMirror') #window title
 
-canvas = Canvas(window, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white") #creates a new canvas with coordinates and master window
-canvas.pack(anchor= CENTER, padx = 10, pady=10) #packs the canvas
-
+canvas = Canvas(window, width=1000, height=1000, bg="white") #creates a new canvas with coordinates and master window
+canvas.pack(anchor= CENTER, padx = 5, pady=5) #packs the canvas
+canvas.place(x = 100, y = 100)
 
 # Add Images to Canvas widget
 image = ImageTk.PhotoImage(Image.open('ball.png'))
 img = canvas.create_image(250, 120, anchor=NW, image=image)
 
-
 #position of middle of the screen
 
-window.geometry("1000x1000")
+window.geometry(f"{CANVAS_WIDTH}x{CANVAS_HEIGHT}")
 
 window.update_idletasks()
 
@@ -45,31 +44,6 @@ news_string_label = StringVar()
 time_string_label = StringVar()
 spotify_string_label = StringVar()
 
-#window.wm_attributes('-fullscreen','true')
-#window.wm_attributes('-transparentcolor', '#185e05')
-
-#variables that can be set as globals in functions. They count
-tick6 = 0
-story_count = 0
-total_tick = 0
-tid = 0
-
-# tdt = time date text
-def tdt():
-    global total_tick
-    global tick6
-    #runs every second
-    time_string_label.set(getTime() + "  " + getDate())
-    
-    total_tick = total_tick + 10
-
-    tick6=tick6+1
-    if (tick6 >= 1000):
-        spotify_string_label.set(get_current_track(SPOTIFY_ACCESS_TOKEN))
-        tick6=0
-        #print("track")
-    window.after(1000, tdt)
-    
 #button to be put in the right spot
 """
 made three functions that save the right mood
@@ -105,52 +79,21 @@ happyRectangle = canvas.create_rectangle(rectangles[0][0],rectangles[0][1],recta
 neutralRectangle = canvas.create_rectangle(rectangles[1][0],rectangles[1][1],rectangles[1][2],rectangles[1][3], fill='yellow')
 sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectangles[2][2],rectangles[2][3], fill='red')
 
-    # happy_button = Button(window, text="Happy", command=save_happy)
-    # happy_button.pack(anchor=NE)
-    # neutral_button = Button(window, text="Neutral", command=save_neutral)
-    # neutral_button.pack(anchor=NE)
-    # sad_button = Button(window, text="Sad", command=save_sad)
-    # sad_button.pack(anchor=NE)
 
-tdt() #time function
-
-infolbl = tk.Label(window,textvariable=time_string_label, fg="white", bg="grey", font=("Helvetica",40)) #label for time
-infolbl.pack(in_=window, side=BOTTOM)
+infolbl = tk.Label(window,textvariable=time_string_label, fg="black", bg="white", font=("Helvetica",40)) #label for time
+infolbl.pack(in_=window, side=TOP)
 
 spot = tk.Label(window) #label for spotify information
-spot.pack(anchor=S, fill=X, padx=45, pady= 20)
-spot.configure(background='black')
+spot.pack(anchor=S, fill=X, padx=10, pady= 20)
 
 spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20), anchor='w')
 spotifylbl.pack(in_=window, side=LEFT)
 
 news_string_label = NewsFromBBC()
 
-newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",20))
-newslbl.place(x = 0, y = 0)
-newslbl.pack()
-
-window.wm_attributes('-fullscreen','false') #fullscreen y/n?
-
-def left(e): #functions to move image in canvas
-   x = -20
-   y = 0
-   canvas.move(image, x, y)
-
-def right(e):
-   x = 20
-   y = 0
-   canvas.move(image, x, y)
-
-def up(e):
-   x = 0
-   y = -20
-   canvas.move(image, x, y)
-
-def down(e):
-   x = 0
-   y = 20
-   canvas.move(image, x, y)
+newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="pink", font=("Helvetica",20))
+newslbl.pack(pady=20)
+newslbl.place(x = 400, y = 500)
 
 def move():
    global image
@@ -173,7 +116,8 @@ def pinch_one(event):
                 print(i)
 
 def do_secondly(event):
-    print("1 sec passed")
+    time_string_label.set(getTime() + "  " + getDate())
+    spotify_string_label.set(get_current_track(SPOTIFY_ACCESS_TOKEN))
 
 def do_millisecondly(event):
     move()
@@ -209,14 +153,14 @@ def getEvent():
 Thr=threading.Thread(target=getEvent)
 Thr.start()
 
+#Binding events to window
 window.bind('<<PINCH_ON>>', pinch_on)
 window.bind('<<PINCH_ONE>>', pinch_one)
-
 window.bind('<<SECONDLY_UPDATE>>', do_secondly)
 window.bind('<<10MILLISEC_UPDATE>>', do_millisecondly)
 
-# Bind the move function
-canvas.bind("<B1-Motion>", move)
+# window.wm_attributes('-fullscreen','true')
+window.wm_attributes('-transparentcolor', '#185e05')
 
 window.mainloop()
 
