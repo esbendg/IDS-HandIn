@@ -119,7 +119,7 @@ spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black",
 spotifylbl.pack(in_=canvas, side=LEFT)
 spotifylbl.place(x=45,y=540)
 
-newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",30))
+newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",20))
 newslbl.place(x = 0, y = 0)
 newslbl.pack()
 
