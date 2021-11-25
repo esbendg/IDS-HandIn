@@ -17,7 +17,7 @@ for i in range(5):
         print(tracker_object.index_tip) #You can reach the indextip this way. It has attributes x, y, z. They are relative to the input screen, ranging from 0 to 1.
         print(tracker_object.index_tip.x) #Getting the x coordinate of the tip of the index finger
         print(tracker_object.thumb_tip) #Same as index_tip but for the thumb
-        print(tracker_object.is_click) #If the index and thumb tips are close enough to each other this is True otherwise False
+        print(tracker_object.is_pinch) #If the index and thumb tips are close enough to each other this is True otherwise False
         print(tracker_object.click_sensitivity) #You can change this value to make the click easier or harder to achive
 
 #If you want to see what is going on you can start the projection of the image
