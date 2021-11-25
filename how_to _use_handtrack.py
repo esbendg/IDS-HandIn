@@ -1,3 +1,8 @@
+"""
+This file is so every group member understands well how to use the handtracker.
+We decided to keep it because it explains well the hand_track_class file.
+"""
+
 import time
 #First the class file has to be imported
 import hand_track_class
@@ -22,11 +27,8 @@ for i in range(5):
 
 #If you want to see what is going on you can start the projection of the image
 tracker_object.img_on()
-
 time.sleep(10)
-
-#An you can turn it off once not needed
-tracker_object.img_off()
+tracker_object.img_off() #An you can turn it off once not needed
 
 # The variables are still updated
 if tracker_object.hand_on_img: #So use the variables when hand is visible
@@ -34,7 +36,15 @@ if tracker_object.hand_on_img: #So use the variables when hand is visible
 
 time.sleep(3)
 
-#finally you can stop the program
+#To use with a specific program and screen, set the screen size for the object
+tracker_object.set_window_size(500, 300)
+#Then it is possible to return the relative x and y position for the index tip (use it as the mouse)
+index_x, index_y = tracker_object.get_relative_index_pos() #It will return the exact pixel where the index finger is
+#And you can ask the object if the index tip is inside of an object (returns True/False)
+box_x0, box_y0, box_x1, box_y1 = 0, 0, 50, 50
+tracker_object.is_inside_box(box_x0, box_y0, box_x1, box_y1)
+
+#finally you can stop the tracking object
 tracker_object.stop()
 
 #But the code can go on

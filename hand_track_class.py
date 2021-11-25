@@ -1,3 +1,6 @@
+
+
+
 import cv2 # pip install opencv-python
 import mediapipe as mp # pip install mediapipe
 import threading
@@ -29,11 +32,8 @@ class Hand_track:
                     success, image = self.cap.read()
                     if not success:
                         print("Ignoring empty camera frame.")
-                        # If loading a video, use 'break' instead of 'continue'.
                         continue
 
-                    # To improve performance, optionally mark the image as not writeable to
-                    # pass by reference.
                     image.flags.writeable = False
                     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
                     results = hands.process(image)
@@ -72,7 +72,6 @@ class Hand_track:
         self.thread.start()
 
     def stop(self):
-        # self.img_off()
         self.stop_thread = True
         self.thread.join()
         self.cap.release()
@@ -100,7 +99,7 @@ class Hand_track:
             within_box = index_x > box_x0 and index_x < box_x1 and index_y > box_y0 and index_y < box_y1
             return within_box
         
-    def set_window_size(self, height, width):
+    def set_window_size(self, width, height):
         self.window_width = width
         self.window_height = height
     
@@ -111,11 +110,3 @@ class Hand_track:
             return index_x, index_y
         else:
             raise Exception("Set widow size with the set_window_size(self, width, height) method")
-
-
-    
-        
-
-    #Function to reasign variables: indexTip, thumbTip and isClick //START function
-
-    #Function to determine when to change isClick [private]

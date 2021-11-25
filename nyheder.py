@@ -6,13 +6,13 @@ def NewsFromBBC():
     query_params = {
         "source": "bbc-news",
         "sortBy": "top",
-        "apiKey": "859e740202ab4f9a8a8a187ea16101a3"
+        "apiKey": "1d29f9ebc84a46a7b0a5441de94b3d78"
     }
     main_url = " https://newsapi.org/v1/articles"
 
     res = requests.get(main_url, params=query_params)
     open_bbc_page = res.json()
-    print (open_bbc_page)
+    # print (open_bbc_page)
     article = open_bbc_page["articles"]
 
     results = []
