@@ -4,7 +4,7 @@ from pprint import pprint
 
 
 SPOTIFY_GET_CURRENT_TRACK_URL = 'https://api.spotify.com/v1/me/player/currently-playing'
-# This line below is where you put your Spotify Access Token, so that it works with your personal Spotify account. 
+# In line 9 below is where you put your Spotify Access Token, so that it works with your personal Spotify account. 
 # Instruction regarding where and how to get the Spotify Access Token can be found in README.md
 SPOTIFY_ACCESS_TOKEN = 'BQATflp5WpABMLJH5vmg7bF8yxdRKhieOfga1Ln46XkFF7pM7J3AIX8G5hWyPk-qbbQsMw1pfs9tKvNY3kKd2xd7ZujOi7SZcLJKLg2GjsE3Ghr9y3jFlAJdvEuR_wU3eXcHQZBW94mOblN5K2in7M4'
 
