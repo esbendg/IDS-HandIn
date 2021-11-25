@@ -12,10 +12,14 @@ import hand_track_class
 import threading
 import time
 
+#VARIABLES
+CANVAS_WIDTH = 1000
+CANVAS_HEIGHT = 1000
+
 track_obj = hand_track_class.Hand_track()
 track_obj.start()
 track_obj.img_on()
-track_obj.set_window_size(1000, 1000) #SET WINDOW SIZE
+track_obj.set_window_size(CANVAS_WIDTH, CANVAS_HEIGHT) #SET WINDOW SIZE
 
 window = tk.Tk()
 window.title('SmortMirror')
@@ -141,10 +145,12 @@ def down(e):
    y = 20
    canvas.move(image, x, y)
 
-def move(e):
+def move():
    global image
    image = ImageTk.PhotoImage(Image.open('ball.png'))
-   img = canvas.create_image(e.x, e.y, image=image)
+   if track_obj.hand_on_img:
+    index_x, index_y = track_obj.get_relative_index_pos()
+    img = canvas.create_image(index_x, index_y, image=image)
 
 
 #WHEN EVENTS HAPPENS:
@@ -159,13 +165,12 @@ def do_secondly(event):
     print("1 sec passed")
 
 def do_millisecondly(event):
-    pass
+    move()
 
 # MAKE EVENTS FOR TKINTER
 def getEvent():
     pinch_previous_frame = False
     time_here_for_sec = time.time()
-    time_here_for_milli = time.time()
     while True:
         if track_obj.is_pinch:
             try:
@@ -182,13 +187,13 @@ def getEvent():
                 window.event_generate('<<SECONDLY_UPDATE>>', when='tail')
             except TclError:
                 break
-        if time.time()-time_here_for_milli > 0.01:                   #Event that happens every 0.01 second
-            time_here_milli = time.time()
-            try:
-                window.event_generate('<<10MILLISEC_UPDATE>>', when='tail')
-            except TclError:
-                break
+        #This happens in every centisecond since the function sleeps after this
+        try:
+            window.event_generate('<<10MILLISEC_UPDATE>>', when='tail')
+        except TclError:
+            break
         time.sleep(0.01)
+
 
 Thr=threading.Thread(target=getEvent)
 Thr.start()

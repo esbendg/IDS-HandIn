@@ -103,6 +103,15 @@ class Hand_track:
     def set_window_size(self, height, width):
         self.window_width = width
         self.window_height = height
+    
+    def get_relative_index_pos(self):
+        if self.window_width != None:
+            index_x = (1-self.index_tip.x)*self.window_width
+            index_y = self.index_tip.y*self.window_width
+            return index_x, index_y
+        else:
+            raise Exception("Set widow size with the set_window_size(self, width, height) method")
+
 
     
         
