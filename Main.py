@@ -6,19 +6,23 @@ import sys
 from datoTid import getDate, getTime
 from SpotifyCurrentSong import get_current_track, SPOTIFY_ACCESS_TOKEN
 from nyheder import NewsFromBBC
-from newsapi import NewsApiClient
+from newsapi import *
 from MoodData import *
 
 
 window = tk.Tk()
 window.title('SmortMirror')
+# Define a Canvas widget
+
+canvas = Canvas(window, width=700., height=900, bg="white")
+canvas.pack(pady=20)
 
 #position of middle of the screen
-"""windowWidth = window.winfo_reqwidth()
+windowWidth = window.winfo_reqwidth()
 windowHeight = window.winfo_reqheight()
 positionRight = int(window.winfo_screenwidth()/3 - windowWidth/2)
 positionDown = int(window.winfo_screenheight()/2 - windowHeight/2)
-window.geometry("+{}+{}".format(positionRight, positionDown))"""
+window.geometry("+{}+{}".format(positionRight, positionDown))
 
 window.update_idletasks()
 
@@ -49,7 +53,7 @@ def tdt():
         spotify_string_label.set(get_current_track(SPOTIFY_ACCESS_TOKEN))
         tick6=0
         #print("track")
-    window.after(10, tdt)
+    canvas.after(10, tdt)
     
 NEWS_DATA1 = NewsFromBBC()
 
@@ -66,7 +70,7 @@ def tidnews():
 
     if (story_count == 9):
         story_count = 0
-    window.after(6000,tidnews)
+    canvas.after(6000,tidnews)
 
 
 #button to be put in the right spot
@@ -85,36 +89,68 @@ def save_sad ():
     dato = getDate ()
     add_data (dato, "sad")
 #put the functions above into buttons.
-happy_button = Button(window, text="Happy", command=save_happy)
+happy_button = Button(canvas, text="Happy", command=save_happy)
 happy_button.pack()
-neutral_button = Button(window, text="Neutral", command=save_neutral)
+neutral_button = Button(canvas, text="Neutral", command=save_neutral)
 neutral_button.pack()
-sad_button = Button(window, text="Sad", command=save_sad)
+sad_button = Button(canvas, text="Sad", command=save_sad)
 sad_button.pack()
 
 
 tdt()
 tidnews()
 
-screen = tk.Label(window)
+screen = tk.Label(canvas)
 screen.pack(anchor=W, fill=X, padx=45)
 screen.configure(background='black')
+from PIL import Image, ImageTk
 
-infolbl = tk.Label(window,textvariable=time_string_label, fg="white", bg="black", font=("Helvetica",40))
-infolbl.pack(in_=screen, side=LEFT)
+infolbl = tk.Label(canvas,textvariable=time_string_label, fg="white", bg="black", font=("Helvetica",40))
+infolbl.pack(in_=canvas, side=LEFT)
 #infolbl.place(relx=0.5, rely=0.5, anchor='nw')
 
-spot = tk.Label(window)
+spot = tk.Label(canvas)
 spot.pack(anchor=W, fill=X, padx=45)
 spot.configure(background='black')
 spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20), anchor='w')
-spotifylbl.pack(in_=spot, side=LEFT)
+spotifylbl.pack(in_=canvas, side=LEFT)
 spotifylbl.place(x=45,y=540)
 
 newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",30))
-newslbl.pack(side=BOTTOM, anchor=W, fill=X)
+newslbl.place(x = 0, y = 0)
+newslbl.pack()
 
 window.wm_attributes('-fullscreen','true')
-window.configure(background='black')
+canvas.configure(background='black')
+
+
+def left(e):
+   x = -20
+   y = 0
+   canvas.move(newslbl, x, y)
+
+def right(e):
+   x = 20
+   y = 0
+   canvas.move(newslbl, x, y)
+
+def up(e):
+   x = 0
+   y = -20
+   canvas.move(newslbl, x, y)
+
+def down(e):
+   x = 0
+   y = 20
+   canvas.move(newslbl, x, y)
+
+def move():
+    global newslbl
+    #newslbl =  tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",30))
+    newslbl.place(x = 50, y = 50)
+    #nbl = canvas.create_image(e.x, e.y, newslbl=newslbl)
+
+# Bind the move function
+canvas.bind("<B1-Button>", move)
 
 window.mainloop()
