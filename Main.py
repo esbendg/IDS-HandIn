@@ -176,21 +176,7 @@ def getEvent():
             except TclError:
                 break
         if time.time()-time_here > 0.01:                   #Event that happens every 0.01 second
-            try:
-                window.event_generate('<<10MILLISEC_UPDATE>>', when='tail')
-            except TclError:
-                break
-            if not pinch_previous_frame:
-                window.event_generate('<<PINCH_ONE>>', when='tail')
-        pinch_previous_frame = track_obj.is_pinch
-        
-        if time.time()-time_here > 1:                   #Event that happens every second
             time_here = time.time()
-            try:
-                window.event_generate('<<SECONDLY_UPDATE>>', when='tail')
-            except TclError:
-                break
-        if time.time()-time_here > 0.01:                   #Event that happens every 0.01 second
             try:
                 window.event_generate('<<10MILLISEC_UPDATE>>', when='tail')
             except TclError:
