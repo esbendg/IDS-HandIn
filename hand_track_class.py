@@ -100,7 +100,7 @@ class Hand_track:
             within_box = index_x > box_x0 and index_x < box_x1 and index_y > box_y0 and index_y < box_y1
             return within_box
         
-    def set_window_size(self, height, width):
+    def set_window_size(self, width, height):
         self.window_width = width
         self.window_height = height
     
