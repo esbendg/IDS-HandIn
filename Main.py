@@ -151,6 +151,8 @@ def getEvent():
     pinch_previous_frame = False
     time_here_for_sec = time.time()
     while True:
+        if not run_Thread:
+            break
         if track_obj.is_pinch:
             try:
                 window.event_generate('<<PINCH_ON>>', when='tail')
@@ -173,7 +175,7 @@ def getEvent():
             break
         time.sleep(0.01)
 
-
+run_Thread = True #Using it to stop the thread
 Thr=threading.Thread(target=getEvent)
 Thr.start()
 
@@ -188,4 +190,8 @@ window.wm_attributes('-transparentcolor', '#185e05')
 
 window.mainloop()
 
+#If program is closed
+run_Thread = False
+Thr.join()
 track_obj.stop()
+close_pkl()
