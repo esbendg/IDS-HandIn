@@ -13,6 +13,7 @@ from PIL import Image, ImageTk
 
 import hand_track_class
 import threading
+import time
 
 track_obj = hand_track_class.Hand_track()
 track_obj.start()
@@ -149,7 +150,7 @@ def move(e):
 
 #Event when pinched
 click_num = 0
-def do_this(event):
+def do_that(event):
     global click_num
     print(f"Click! {click_num}")
     click_num += 1
@@ -157,30 +158,43 @@ def do_this(event):
         # CALL FUNCTION HERE
         print("INBOX")
 
+def do_secondly(event):
+    print("1 sec passed")
+
+pinch_previous_frame = False
 def getEvent():
+    time_here = time.time()
     while True:
         if track_obj.is_pinch:
             try:
-                window.event_generate('<<PINCH>>', when='tail')
+                window.event_generate('<<PINCH_ON>>', when='tail')
             except TclError:
                 break
-
-
-def get_event_pressed():
-    oldpinchispressed = False
-    if (oldpinchispressed!=track_obj.is_pinch and track_obj.is_pinch):
-        oldpinchispressed=True
-        return True
-    else :
-        return False
-
-
-
+            if not pinch_previous_frame:
+                window.event_generate('<<PINCH_ONE>>', when='tail')
+        pinch_previous_frame = track_obj.is_pinch
+        
+        if time.time()-time_here > 1:                   #Event that happens every second
+            time_here = time.time()
+            try:
+                window.event_generate('<<SECONDLY_UPDATE>>', when='tail')
+            except TclError:
+                break
+        if time.time()-time_here > 0.01:                   #Event that happens every 0.01 second
+            try:
+                window.event_generate('<<10MILLISEC_UPDATE>>', when='tail')
+            except TclError:
+                break
+  
 
 Thr=threading.Thread(target=getEvent)
 Thr.start()
 
-window.bind('<<PINCH>>', do_this)
+# window.bind('<<PINCH_ON>>', do_this)
+# window.bind('<<PINCH_ONE>>', do_that)
+
+window.bind('<<SECONDLY_UPDATE>>', do_secondly)
+# window.bind('<<10MILLISEC_UPDATE>>', millisecondly)
 
 # Bind the move function
 canvas.bind("<B1-Motion>", move)
