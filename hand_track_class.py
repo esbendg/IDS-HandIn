@@ -93,7 +93,7 @@ class Hand_track:
         if self.window_width == None:
             raise Exception("Set widow size with the set_window_size(self, width, height) method")
         else:
-            index_x = self.index_tip.x*self.window_width
+            index_x = (1-self.index_tip.x)*self.window_width
             index_y = self.index_tip.y*self.window_width
             within_box = index_x > box_x0 and index_x < box_x1 and index_y > box_y0 and index_y < box_y1
             return within_box
