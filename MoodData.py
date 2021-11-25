@@ -20,7 +20,6 @@ def create_pkl_file ():
     data = pickle.load(infile)
     infile.close()
 
-
 filename = 'mood.pkl'
 infile = open(filename,'rb')
 mood_dict = pickle.load(infile)

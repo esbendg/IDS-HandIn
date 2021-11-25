@@ -113,13 +113,13 @@ def pinch_on(event):
 repaint_boxes = False
 def pinch_one(event):
     global repaint_boxes
-    print("one pinch")
+    # print("one pinch")
     for i in range(3):
         if (track_obj.is_inside_box(rectangles[i][0],rectangles[i][1],rectangles[i][2],rectangles[i][3])):
                 assign_event(i)
                 canvas.itemconfig(rect_list[i], fill='white')
                 repaint_boxes = True
-                print(i)
+                # print(i)
 
 count_seconds = 0
 news_i = 0

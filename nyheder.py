@@ -12,7 +12,7 @@ def NewsFromBBC():
 
     res = requests.get(main_url, params=query_params)
     open_bbc_page = res.json()
-    print (open_bbc_page)
+    # print (open_bbc_page)
     article = open_bbc_page["articles"]
 
     results = []
