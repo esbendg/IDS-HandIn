@@ -21,12 +21,12 @@ track_obj.start()
 track_obj.img_on()
 track_obj.set_window_size(CANVAS_WIDTH, CANVAS_HEIGHT) #SET WINDOW SIZE
 
-window = tk.Tk()
-window.title('SmortMirror')
+window = tk.Tk() #master tk window
+window.title('SmortMirror') #window title
 
-canvas = Canvas(window, width=1000, height=1000, bg="white")
-canvas.pack(anchor= CENTER, padx = 10, pady=10)
-canvas.place(x = 0, y =0)
+canvas = Canvas(window, width=1000, height=1000, bg="white") #creates a new canvas with coordinates and master window
+canvas.pack(anchor= CENTER, padx = 10, pady=10) #packs the canvas
+
 
 # Add Images to Canvas widget
 image = ImageTk.PhotoImage(Image.open('ball.png'))
@@ -85,35 +85,30 @@ def save_sad ():
     dato = getDate () + " : "+ getTime()
     add_data (dato, "sad")
     close_pkl()
-def quit_everything ():
-    canvas.destroy()
-    window.destroy()
 
+mood_event = {save_happy, save_neutral, save_sad}
 
+class mood_buttons:
+    #put the functions above into buttons.
+    rectangles = [[950,0,900,50], [950, 70, 900, 120], [950, 150, 900, 200]]
 
-#put the functions above into buttons.
-rectangles = [[950,0,900,50], [950, 70, 900, 120], [950, 150, 900, 200]]
+    happyRectangle = canvas.create_rectangle(rectangles[0][0],rectangles[0][1],rectangles[0][2],rectangles[0][3], fill='green')
+    neutralRectangle = canvas.create_rectangle(rectangles[1][0],rectangles[1][1],rectangles[1][2],rectangles[1][3], fill='yellow')
+    sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectangles[2][2],rectangles[2][3], fill='red')
 
+    happy_button = Button(window, text="Happy", command=save_happy)
+    happy_button.pack(anchor=NE)
+    neutral_button = Button(window, text="Neutral", command=save_neutral)
+    neutral_button.pack(anchor=NE)
+    sad_button = Button(window, text="Sad", command=save_sad)
+    sad_button.pack(anchor=NE)
 
+tdt() #time function
 
-happyRectangle = canvas.create_rectangle(rectangles[0][0],rectangles[0][1],rectangles[0][2],rectangles[0][3], fill='green')
-neutralRectangle = canvas.create_rectangle(rectangles[1][0],rectangles[1][1],rectangles[1][2],rectangles[1][3], fill='yellow')
-sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectangles[2][2],rectangles[2][3], fill='red')
-
-
-happy_button = Button(window, text="Happy", command=save_happy)
-happy_button.pack(anchor=NE)
-neutral_button = Button(window, text="Neutral", command=save_neutral)
-neutral_button.pack(anchor=NE)
-sad_button = Button(window, text="Sad", command=save_sad)
-sad_button.pack(anchor=NE)
-
-tdt()
-
-infolbl = tk.Label(window,textvariable=time_string_label, fg="white", bg="grey", font=("Helvetica",40))
+infolbl = tk.Label(window,textvariable=time_string_label, fg="white", bg="grey", font=("Helvetica",40)) #label for time
 infolbl.pack(in_=window, side=BOTTOM)
 
-spot = tk.Label(window)
+spot = tk.Label(window) #label for spotify information
 spot.pack(anchor=S, fill=X, padx=45)
 spot.configure(background='black')
 spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20), anchor='w')
@@ -123,9 +118,9 @@ spotifylbl.pack(in_=window, side=LEFT)
 newslbl.place(x = 0, y = 0)
 newslbl.pack()"""
 
-window.wm_attributes('-fullscreen','false')
+window.wm_attributes('-fullscreen','false') #fullscreen y/n?
 
-def left(e):
+def left(e): #functions to move image in canvas
    x = -20
    y = 0
    canvas.move(image, x, y)
@@ -160,6 +155,10 @@ def pinch_on(event):
 
 def pinch_one(event):
     print("one pinch")
+    for rectangles in mood_buttons.rectangles:
+        for number in rectangles:
+            if (track_obj.is_inside_box([rectangles][number],[rectangles][number],[rectangles][number],[rectangles][number])):
+                    mood_event[rectangles]
 
 def do_secondly(event):
     print("1 sec passed")
