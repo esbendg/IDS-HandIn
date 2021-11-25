@@ -88,10 +88,14 @@ def quit_everything ():
 
 
 #put the functions above into buttons.
+rectangles = [[950,0,900,50], [950, 70, 900, 120], [950, 150, 900, 200]]
 
-happyRectangle = canvas.create_rectangle(950,0,900,50, fill='green')
-neutralRectangle = canvas.create_rectangle(950,70,900,120, fill='yellow')
-sadRectangle = canvas.create_rectangle(950,150,900,200, fill='red')
+
+
+happyRectangle = canvas.create_rectangle(rectangles[0][0],rectangles[0][1],rectangles[0][2],rectangles[0][3], fill='green')
+neutralRectangle = canvas.create_rectangle(rectangles[1][0],rectangles[1][1],rectangles[1][2],rectangles[1][3], fill='yellow')
+sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectangles[2][2],rectangles[2][3], fill='red')
+
 
 happy_button = Button(window, text="Happy", command=save_happy)
 happy_button.pack(anchor=NE)
