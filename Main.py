@@ -55,7 +55,7 @@ def tdt():
         tick6=0
         #print("track")
     canvas.after(10, tdt)
-    
+""" 
 NEWS_DATA1 = NewsFromBBC()
 
 
@@ -72,7 +72,7 @@ def tidnews():
     if (story_count == 9):
         story_count = 0
     canvas.after(6000,tidnews)
-
+"""
 
 #button to be put in the right spot
 """
@@ -92,6 +92,12 @@ def save_sad ():
     dato = getDate () + " : "+ getTime()
     add_data (dato, "sad")
     close_pkl()
+def quit_everything ():
+    canvas.destroy()
+    window.destroy()
+
+
+
 #put the functions above into buttons.
 happy_button = Button(canvas, text="Happy", command=save_happy)
 happy_button.pack()
@@ -99,9 +105,11 @@ neutral_button = Button(canvas, text="Neutral", command=save_neutral)
 neutral_button.pack()
 sad_button = Button(canvas, text="Sad", command=save_sad)
 sad_button.pack()
+Close = Button (window, text="QUIT", command=quit_everything)
+Close.pack()
 
 tdt()
-tidnews()
+#tidnews()
 
 screen = tk.Label(canvas)
 screen.pack(anchor=W, fill=X, padx=45)
