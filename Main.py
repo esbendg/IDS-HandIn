@@ -16,7 +16,7 @@ from nyheder import NewsFromBBC
 
 #VARIABLES
 CANVAS_WIDTH = 1000
-CANVAS_HEIGHT = 1000
+CANVAS_HEIGHT = 600
 
 track_obj = hand_track_class.Hand_track()
 track_obj.start()
@@ -27,8 +27,8 @@ window = tk.Tk() #master tk window
 window.title('SmortMirror') #window title
 
 canvas = Canvas(window, width=1000, height=1000, bg="white") #creates a new canvas with coordinates and master window
-canvas.pack(anchor= CENTER, padx = 5, pady=5) #packs the canvas
-canvas.place(x = 100, y = 100)
+canvas.pack() #packs the canvas
+canvas.place(x = 0, y = 0)
 
 # Add Images to Canvas widget
 image = ImageTk.PhotoImage(Image.open('ball.png'))
@@ -80,20 +80,19 @@ neutralRectangle = canvas.create_rectangle(rectangles[1][0],rectangles[1][1],rec
 sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectangles[2][2],rectangles[2][3], fill='red')
 
 
-infolbl = tk.Label(window,textvariable=time_string_label, fg="black", bg="white", font=("Helvetica",40)) #label for time
-infolbl.pack(in_=window, side=TOP)
+infolbl = Label(canvas, textvariable=time_string_label, fg="black", bg="white", font=("Helvetica",20)) #label for time
+infolbl.pack()
+canvas.create_window(0, 100, window=infolbl, anchor="nw") 
 
-spot = tk.Label(window) #label for spotify information
-spot.pack(anchor=S, fill=X, padx=10, pady= 20)
+spotifylbl = Label(canvas, textvariable=spotify_string_label, fg="black", bg="green", font=("Helvetica",20))
+spotifylbl.pack()
+canvas.create_window(CANVAS_WIDTH/2, CANVAS_HEIGHT-200, window=spotifylbl, anchor="n")
 
-spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20), anchor='w')
-spotifylbl.pack(in_=window, side=LEFT)
+news_list = NewsFromBBC()
 
-news_string_label = NewsFromBBC()
-
-newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="pink", font=("Helvetica",20))
+newslbl = tk.Label(canvas, textvariable=news_string_label, fg="white", bg="blue", font=("Helvetica",20))
 newslbl.pack(pady=20)
-newslbl.place(x = 400, y = 500)
+canvas.create_window(CANVAS_WIDTH/2, CANVAS_HEIGHT-100, window=newslbl, ) 
 
 def move():
    global image
@@ -115,9 +114,21 @@ def pinch_one(event):
                 assign_event(i)
                 print(i)
 
+count_seconds = 0
+news_i = 0
 def do_secondly(event):
     time_string_label.set(getTime() + "  " + getDate())
-    spotify_string_label.set(get_current_track(SPOTIFY_ACCESS_TOKEN))
+    spotify_string_label.set("get_current_track(SPOTIFY_ACCESS_TOKEN)")
+    #Happens every 10 seconds
+    global count_seconds
+    count_seconds += count_seconds
+    if count_seconds > 3:
+        global news_i
+        news_string_label.set(news_list[news_i])
+        news_i += news_i
+        if news_i > 10:
+            news_i = 0
+        count_seconds = 0
 
 def do_millisecondly(event):
     move()
