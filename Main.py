@@ -99,6 +99,9 @@ spot.configure(background='black')
 spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20), anchor='w')
 spotifylbl.pack(in_=window, side=LEFT)
 
+"""newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",20))
+newslbl.place(x = 0, y = 0)
+newslbl.pack()"""
 
 
 window.wm_attributes('-fullscreen','false')
