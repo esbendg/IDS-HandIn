@@ -27,13 +27,12 @@ window = tk.Tk() #master tk window
 window.title('SmortMirror') #window title
 
 canvas = Canvas(window, width=1000, height=1000, bg="white") #creates a new canvas with coordinates and master window
-canvas.pack(anchor= CENTER, padx = 10, pady=10) #packs the canvas
-
+canvas.pack(anchor= CENTER, padx = 5, pady=5) #packs the canvas
+canvas.place(x = 100, y = 100)
 
 # Add Images to Canvas widget
 image = ImageTk.PhotoImage(Image.open('ball.png'))
 img = canvas.create_image(250, 120, anchor=NW, image=image)
-
 
 #position of middle of the screen
 
@@ -45,7 +44,7 @@ news_string_label = StringVar()
 time_string_label = StringVar()
 spotify_string_label = StringVar()
 
-#window.wm_attributes('-fullscreen','true')
+window.wm_attributes('-fullscreen','true')
 #window.wm_attributes('-transparentcolor', '#185e05')
 
 #variables that can be set as globals in functions. They count
@@ -114,21 +113,21 @@ sadRectangle = canvas.create_rectangle(rectangles[2][0],rectangles[2][1],rectang
 
 tdt() #time function
 
-infolbl = tk.Label(window,textvariable=time_string_label, fg="white", bg="grey", font=("Helvetica",40)) #label for time
-infolbl.pack(in_=window, side=BOTTOM)
+infolbl = tk.Label(window,textvariable=time_string_label, fg="black", bg="white", font=("Helvetica",40)) #label for time
+infolbl.pack(in_=window, side=TOP)
 
 spot = tk.Label(window) #label for spotify information
-spot.pack(anchor=S, fill=X, padx=45, pady= 20)
-spot.configure(background='black')
+spot.pack(anchor=S, fill=X, padx=10, pady= 20)
 
 spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20), anchor='w')
 spotifylbl.pack(in_=window, side=LEFT)
 
 news_string_label = NewsFromBBC()
 
-newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",20))
-newslbl.place(x = 0, y = 0)
-newslbl.pack()
+newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="pink", font=("Helvetica",20))
+newslbl.pack(pady=20)
+newslbl.place(x = 400, y = 500)
+
 
 window.wm_attributes('-fullscreen','false') #fullscreen y/n?
 
