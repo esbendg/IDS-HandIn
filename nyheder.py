@@ -28,4 +28,3 @@ def NewsFromBBC():
 
 if __name__ == '__main__':
     NEWS_DATA = NewsFromBBC()
-

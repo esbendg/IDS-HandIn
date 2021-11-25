@@ -1,8 +1,26 @@
 import pickle
 
 #too use this file: from MoodData import close_pkl,add_data
-
+mood_dict = {
+    "woof" : "giig",
+    "hello" : "yes"
+}
 # reading from pickle file
+def create_pkl_file ():
+    mood_dict = {
+    "date time" : "moodstate"
+    }
+
+    filename = 'mood.pkl'
+    outfile = open(filename,'wb') # 'wb' means write binary
+    pickle.dump(mood_dict,outfile)
+    outfile.close()
+    # reading from pickle file
+    infile = open(filename,'rb')
+    data = pickle.load(infile)
+    infile.close()
+
+
 filename = 'mood.pkl'
 infile = open(filename,'rb')
 mood_dict = pickle.load(infile)
@@ -20,3 +38,4 @@ def close_pkl ():
     pickle.dump(mood_dict,outfile)
     print (f"mood dict saved as \n {mood_dict}")
     outfile.close()
+
