@@ -1,5 +1,6 @@
 #SpotifyCurrentSong.py needs a token from https://developer.spotify.com/console/get-users-currently-playing-track/?market=&additional_types= put into the SPOTIFY ACCESS TOKEN
 
+from pickle import STRING
 import tkinter as tk
 from tkinter import *
 import sys
@@ -11,6 +12,7 @@ from PIL import Image, ImageTk
 import hand_track_class
 import threading
 import time
+from nyheder import NewsFromBBC
 
 #VARIABLES
 CANVAS_WIDTH = 1000
@@ -39,6 +41,7 @@ window.geometry("1000x1000")
 
 window.update_idletasks()
 
+news_string_label = StringVar()
 time_string_label = StringVar()
 spotify_string_label = StringVar()
 
@@ -109,14 +112,17 @@ infolbl = tk.Label(window,textvariable=time_string_label, fg="white", bg="grey",
 infolbl.pack(in_=window, side=BOTTOM)
 
 spot = tk.Label(window) #label for spotify information
-spot.pack(anchor=S, fill=X, padx=45)
+spot.pack(anchor=S, fill=X, padx=45, pady= 20)
 spot.configure(background='black')
+
 spotifylbl = tk.Label(textvariable=spotify_string_label, fg="white", bg="black", font=("Helvetica",20), anchor='w')
 spotifylbl.pack(in_=window, side=LEFT)
 
-"""newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",20))
+news_string_label = NewsFromBBC()
+
+newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="black", font=("Helvetica",20))
 newslbl.place(x = 0, y = 0)
-newslbl.pack()"""
+newslbl.pack()
 
 window.wm_attributes('-fullscreen','false') #fullscreen y/n?
 
