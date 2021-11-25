@@ -17,14 +17,14 @@ import threading
 track_obj = hand_track_class.Hand_track()
 track_obj.start()
 track_obj.img_on()
-track_obj.set_window_size(200, 300) #SET WINDOW SIZE
+track_obj.set_window_size(1000, 1000) #SET WINDOW SIZE
 
 window = tk.Tk()
 window.title('SmortMirror')
 # Define a Canvas widget
 
 # Define a Canvas widget
-canvas = Canvas(window, width=5000, height=5000, bg="white")
+canvas = Canvas(window, width=1000, height=1000, bg="white")
 canvas.pack(anchor= CENTER, padx = 10, pady=10)
 canvas.place(x = 0, y =0)
 
@@ -65,7 +65,7 @@ def tdt():
         spotify_string_label.set(get_current_track(SPOTIFY_ACCESS_TOKEN))
         tick6=0
         #print("track")
-    window.after(10, tdt)
+    window.after(1000, tdt)
     
 #button to be put in the right spot
 """
@@ -145,9 +145,9 @@ def move(e):
 click_num = 0
 def do_this(event):
     global click_num
-    print(f"Click! {x}")
+    print(f"Click! {click_num}")
     click_num += 1
-    if track_obj.is_inside_box(x0, y0, x1, y1): # SET OBJECT BOUNDARIES
+    if track_obj.is_inside_box(0, 0, 300, 300): # SET OBJECT BOUNDARIES
         # CALL FUNCTION HERE
         print("INBOX")
 
@@ -169,3 +169,5 @@ canvas.bind("<B1-Motion>", move)
 
 
 window.mainloop()
+
+track_obj.stop()

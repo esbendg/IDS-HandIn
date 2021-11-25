@@ -1,5 +1,4 @@
 import requests
-
 from newsapi import NewsApiClient
 
 
@@ -7,7 +6,7 @@ def NewsFromBBC():
     query_params = {
         "source": "bbc-news",
         "sortBy": "top",
-        "apiKey": "fe8271c563c049a0948a2071ed7ff98e"
+        "apiKey": "859e740202ab4f9a8a8a187ea16101a3"
     }
     main_url = " https://newsapi.org/v1/articles"
 
