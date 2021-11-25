@@ -21,12 +21,16 @@ sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 
 # 20 tracks from an artist being printet to the terminal
-results = sp.search(q='aj tracy', limit=20)
+# The artist can be changed by replacing "kendrick lamar" in the line below to whatever artist you would prefer.    
+results = sp.search(q='kendrick lamar', limit=20)
 for i, t in enumerate(results['tracks']['items']):
     print(' ', i, t['name'])
 
 
 # Various types of infomation about a given artist
+# The chosen artist can be changed by copying the artist id from the url, if you go to their page on the spotify webplayer.
+# A link with the artist id could look something like this: https://open.spotify.com/artist/2YZyLoL8N0Wb9xBt1NhZWg
+# Then you can copy the everything after artist/
 if len(sys.argv) > 1:
     kunstner = sys.argv[1]
 else:
