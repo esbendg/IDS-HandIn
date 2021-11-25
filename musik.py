@@ -1,11 +1,14 @@
 from abc import get_cache_token
-import pygame
 import spotipy
 from spotipy.client import Spotify
 from spotipy.oauth2 import SpotifyClientCredentials, SpotifyOAuth
 from pprint import pprint
 import sys
 import tkinter as tk
+
+
+# This file does not run in the main file, but it can show the top 20 spotify songs from an artist, and it can show-
+# a variety of information regarding different artists. 
 
 # Client id, and secret client id from the Spotify Developer Dashboard
 cid = '2979387358d646089e17a9f58f435b71'
@@ -32,7 +35,7 @@ else:
 artist = sp.artist(kunstner)
 pprint(artist)
 
-# Shows the infomation from above in a window
+# Shows the infomation about an artist from above in a window
 window = tk.Tk()
 window.wm_attributes('-transparentcolor', '#ab23ff')
 infomationer = tk.Label(text=artist, fg="white", bg="#ab23ff" ,width=100, height=30, wraplength=200, font="helvetica 9")

@@ -14,12 +14,6 @@ from MoodData import *
 window = tk.Tk()
 window.title('SmortMirror')
 
-#position of middle of the screen
-"""windowWidth = window.winfo_reqwidth()
-windowHeight = window.winfo_reqheight()
-positionRight = int(window.winfo_screenwidth()/3 - windowWidth/2)
-positionDown = int(window.winfo_screenheight()/2 - windowHeight/2)
-window.geometry("+{}+{}".format(positionRight, positionDown))"""
 
 window.update_idletasks()
 
