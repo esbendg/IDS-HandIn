@@ -1,6 +1,3 @@
-
-import requests
-import json
 from datetime import datetime
 
 # Defines the function getTime, this function set the current time by. First the hour, then the minute and then the seconds.

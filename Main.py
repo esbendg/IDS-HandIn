@@ -3,15 +3,14 @@ SpotifyCurrentSong.py needs a token from https://developer.spotify.com/console/g
 """
 from pickle import STRING
 from tkinter import *
-# from typing import Literal
-from datoTid import getDate, getTime
+from date_and_time import getDate, getTime
 from SpotifyCurrentSong import get_current_track, SPOTIFY_ACCESS_TOKEN
-from MoodData import *
+from mood_data import *
 from PIL import Image, ImageTk
 import hand_track_class
 import threading
 import time
-from nyheder import NewsFromBBC
+from news import NewsFromBBC
 
 #VARIABLES for Canvas
 CANVAS_WIDTH = 1000

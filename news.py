@@ -1,5 +1,4 @@
 import requests
-from newsapi import NewsApiClient
 
 # This function gets the headlines from the BBC news through the news api. 
 def NewsFromBBC():
