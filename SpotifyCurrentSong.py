@@ -35,8 +35,4 @@ def get_current_track(access_token):
 
     return stringsong
 
-#def music():
-	#current_track_id = None
-	#current_track_info = get_current_track(SPOTIFY_ACCESS_TOKEN)
-	#current_track_id = current_track_info['id']
-    #return current_track_info["id"]
+
