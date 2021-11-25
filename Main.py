@@ -30,14 +30,9 @@ canvas = Canvas(window, width=1000, height=1000, bg="white") #creates a new canv
 canvas.pack(anchor= CENTER, padx = 5, pady=5) #packs the canvas
 canvas.place(x = 100, y = 100)
 
-# Add Images to Canvas widget
-image = ImageTk.PhotoImage(Image.open('ball.png'))
-img = canvas.create_image(250, 120, anchor=NW, image=image)
-
 #position of middle of the screen
 
 window.geometry("1000x1000")
-
 window.update_idletasks()
 
 news_string_label = StringVar()
@@ -128,28 +123,7 @@ newslbl = tk.Label(textvariable=news_string_label, fg="white", bg="pink", font=(
 newslbl.pack(pady=20)
 newslbl.place(x = 400, y = 500)
 
-
 window.wm_attributes('-fullscreen','false') #fullscreen y/n?
-
-def left(e): #functions to move image in canvas
-   x = -20
-   y = 0
-   canvas.move(image, x, y)
-
-def right(e):
-   x = 20
-   y = 0
-   canvas.move(image, x, y)
-
-def up(e):
-   x = 0
-   y = -20
-   canvas.move(image, x, y)
-
-def down(e):
-   x = 0
-   y = 20
-   canvas.move(image, x, y)
 
 def move():
    global image
