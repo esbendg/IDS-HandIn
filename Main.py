@@ -81,6 +81,12 @@ def save_sad ():
     dato = getDate () + " : "+ getTime()
     add_data (dato, "sad")
     close_pkl()
+def quit_everything ():
+    canvas.destroy()
+    window.destroy()
+
+
+
 #put the functions above into buttons.
 
 happyRectangle = canvas.create_rectangle(950,0,900,50, fill='green')
@@ -153,6 +159,18 @@ def getEvent():
                 window.event_generate('<<PINCH>>', when='tail')
             except TclError:
                 break
+
+
+def get_event_pressed():
+    oldpinchispressed = False
+    if (oldpinchispressed!=track_obj.is_pinch and track_obj.is_pinch):
+        oldpinchispressed=True
+        return True
+    else :
+        return False
+
+
+
 
 Thr=threading.Thread(target=getEvent)
 Thr.start()

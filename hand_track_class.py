@@ -87,6 +87,8 @@ class Hand_track:
             self.is_pinch = True
         else:
             self.is_pinch = False
+    
+    
 
     #NOT YET EXPLAINED IN HOW TO USE
     def is_inside_box(self, box_x0, box_y0, box_x1, box_y1):
