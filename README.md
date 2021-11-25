@@ -12,7 +12,7 @@ Pickle file named mood.pkl on path
 
 We have experienced some issues with the newsapi, if you experience issues with the program not recognizing certain newsapi commands, try to first pip uninstall both "newsapi-python" and "newsapi" and then reinstall "newsapi-python", that has fixed the issues on our end. It appears if both "newsapi-python" and "newsapi" are both installed it causes an issue. 
 
-Required pip installs:
+Required pip modules and other imports:
 
 tkinter
 tkcalendar
