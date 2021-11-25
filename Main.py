@@ -16,7 +16,7 @@ from nyheder import NewsFromBBC
 
 #VARIABLES
 CANVAS_WIDTH = 1000
-CANVAS_HEIGHT = 1000
+CANVAS_HEIGHT = 500
 
 track_obj = hand_track_class.Hand_track()
 track_obj.start()
@@ -26,7 +26,7 @@ track_obj.set_window_size(CANVAS_WIDTH, CANVAS_HEIGHT) #SET WINDOW SIZE
 window = tk.Tk() #master tk window
 window.title('SmortMirror') #window title
 
-canvas = Canvas(window, width=1000, height=1000, bg="white") #creates a new canvas with coordinates and master window
+canvas = Canvas(window, width=CANVAS_WIDTH, height=CANVAS_HEIGHT, bg="white") #creates a new canvas with coordinates and master window
 canvas.pack(anchor= CENTER, padx = 10, pady=10) #packs the canvas
 
 
