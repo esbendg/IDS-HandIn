@@ -8,7 +8,6 @@ from datoTid import getDate, getTime
 from SpotifyCurrentSong import get_current_track, SPOTIFY_ACCESS_TOKEN
 from MoodData import *
 from PIL import Image, ImageTk
-
 import hand_track_class
 import threading
 import time
