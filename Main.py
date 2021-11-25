@@ -153,14 +153,11 @@ def getEvent():
 Thr=threading.Thread(target=getEvent)
 Thr.start()
 
+#Binding events to window
 window.bind('<<PINCH_ON>>', pinch_on)
 window.bind('<<PINCH_ONE>>', pinch_one)
-
 window.bind('<<SECONDLY_UPDATE>>', do_secondly)
 window.bind('<<10MILLISEC_UPDATE>>', do_millisecondly)
-
-# Bind the move function
-canvas.bind("<B1-Motion>", move)
 
 # window.wm_attributes('-fullscreen','true')
 window.wm_attributes('-transparentcolor', '#185e05')
