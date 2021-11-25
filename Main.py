@@ -57,7 +57,7 @@ def tdt():
         spotify_string_label.set(get_current_track(SPOTIFY_ACCESS_TOKEN))
         tick6=0
         #print("track")
-    window.after(10, tdt)
+    window.after(1000, tdt)
     
 #button to be put in the right spot
 """
