@@ -142,22 +142,26 @@ def move(e):
    image = ImageTk.PhotoImage(Image.open('ball.png'))
    img = canvas.create_image(e.x, e.y, image=image)
 
-#Event when pinched
-click_num = 0
-def do_that(event):
-    global click_num
-    print(f"Click! {click_num}")
-    click_num += 1
-    if track_obj.is_inside_box(0, 0, 300, 300): # SET OBJECT BOUNDARIES
-        # CALL FUNCTION HERE
-        print("INBOX")
+
+#WHEN EVENTS HAPPENS:
+def pinch_on(event):
+    # print("Pinch")
+    pass
+
+def pinch_one(event):
+    print("one pinch")
 
 def do_secondly(event):
     print("1 sec passed")
 
-pinch_previous_frame = False
+def do_millisecondly(event):
+    pass
+
+# MAKE EVENTS FOR TKINTER
 def getEvent():
-    time_here = time.time()
+    pinch_previous_frame = False
+    time_here_for_sec = time.time()
+    time_here_for_milli = time.time()
     while True:
         if track_obj.is_pinch:
             try:
@@ -168,34 +172,28 @@ def getEvent():
                 window.event_generate('<<PINCH_ONE>>', when='tail')
         pinch_previous_frame = track_obj.is_pinch
         
-        if time.time()-time_here > 1:                   #Event that happens every second
-            time_here = time.time()
+        if time.time()-time_here_for_sec > 1:                   #Event that happens every second
+            time_here_for_sec = time.time()
             try:
                 window.event_generate('<<SECONDLY_UPDATE>>', when='tail')
             except TclError:
                 break
-        if time.time()-time_here > 0.01:                   #Event that happens every 0.01 second
-            time_here = time.time()
+        if time.time()-time_here_for_milli > 0.01:                   #Event that happens every 0.01 second
+            time_here_milli = time.time()
             try:
                 window.event_generate('<<10MILLISEC_UPDATE>>', when='tail')
             except TclError:
                 break
-  
-
-                
-        
-
-                
-        
+        time.sleep(0.01)
 
 Thr=threading.Thread(target=getEvent)
 Thr.start()
 
-# window.bind('<<PINCH_ON>>', do_this)
-# window.bind('<<PINCH_ONE>>', do_that)
+window.bind('<<PINCH_ON>>', pinch_on)
+window.bind('<<PINCH_ONE>>', pinch_one)
 
 window.bind('<<SECONDLY_UPDATE>>', do_secondly)
-# window.bind('<<10MILLISEC_UPDATE>>', millisecondly)
+window.bind('<<10MILLISEC_UPDATE>>', do_millisecondly)
 
 # Bind the move function
 canvas.bind("<B1-Motion>", move)
